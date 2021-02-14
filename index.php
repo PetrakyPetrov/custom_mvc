@@ -1,4 +1,7 @@
-<?php
+<?php 
+
+ini_set('upload_max_filesize', '15M');
+
 session_start();
 // $_SESSION['time'] = time();
 define('DS', DIRECTORY_SEPARATOR);
@@ -8,29 +11,16 @@ define('SYSTEM_ROOT', ROOT."/system");
 define('VIEWS_PATH', ROOT."/app/views");
 define('UPLOADS_PATH', ROOT."/uploads");
 
-function error_handler($errno, $errstr, $errfile, $errline) {
-    echo "<b>Custom error:</b> [$errno] $errstr<br>";
-    echo " Error on line $errline in $errfile<br>";
+$http = "http://";
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'){
+    $http = "https://";
 }
+define('SERVER_URL', $http.$_SERVER['HTTP_HOST']);
 
-function exception_handler($exception) {
-    echo "Uncaught exception: " , $exception->getMessage(), "\n";
-}
 
-function get_logged_user() {
-    if (isset($_SESSION['logged_user'])) {
-        return $_SESSION['logged_user'];
-    }
-    return [];
-}
 
-function clear_session() {
-    $_SESSION = [];
-    $_SESSION['logged_user'] = [];
-}
-
-set_error_handler("error_handler");
-set_exception_handler('exception_handler');
+require_once ROOT."/helpers/system.php";
+require_once ROOT."/config/db.php";
 
 $controller = "GalleryController";
 $action     = "actionIndex";
@@ -44,7 +34,7 @@ if(isset($_SERVER['PATH_INFO'])){
         $action  = str_replace(" ", "", $action);  
         $action  = "action".ucfirst($action);  
     }
-    // Do a path split
+
     $controller = $path_arr[1];
     $controller = strtolower($controller);
     $controller = str_replace(" ", "", $controller);

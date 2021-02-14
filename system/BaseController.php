@@ -29,12 +29,11 @@ class BaseController {
         $params['view'] = VIEWS_PATH."/{$this->_controller}/{$view}.php";
         extract($params);
         include (VIEWS_PATH."/layout.php");
+        exit();
     }
 
     public function redirect($url, $statusCode = 303) {
         header('location: ' . $url, true, $statusCode);
-        // session_write_close();
-        // session_regenerate_id(true);
         exit();
     }
 }

@@ -1,19 +1,11 @@
-<div class="col-md-12 jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
-</div>
-<div class="col-sm-4">
-  <h3>Column 1</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-</div>
-<div class="col-sm-4">
-  <h3>Column 2</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-</div>
-<div class="col-sm-4">
-  <h3>Column 3</h3>        
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-</div>
+<?php 
+    foreach ($images as $image) {
+      $id = $image['id'];
+      echo "<div class=\"col-md-4\" style=\"margin-top: 5px;\">";
+      echo   "<a href=".SERVER_URL.$image['path']." data-toggle=\"lightbox\" data-gallery=\"gallery\">";
+      echo       "<img src=".SERVER_URL.$image['path']." class=\"img-fluid rounded\">";
+      echo   "</a><br>";
+      echo   "<a href=\"/gallery/view?id={$id}\" >Get more info</a>";
+      echo "</div>";
+    }
+?>
