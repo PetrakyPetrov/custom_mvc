@@ -15,17 +15,23 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#"></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link disabled" href="#"></a>
       </li>
     </ul>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Upload</button>
-    <a class="btn btn-outline-success my-2 my-sm-0" href="/users/login">Login</a>
+    <?php 
+        if (get_logged_user()) {
+            echo "<a href=\"/gallery/upload\" class=\"btn btn-outline-success my-2 my-sm-0\" style=\"margin-right:5px;\">Upload Photo</a>";
+            echo "<a href=\"/users/logout\" class=\"btn btn-outline-success my-2 my-sm-0\" style=\"margin-right:5px;\">Logout</a>";
+        } else {
+            echo "<a href=\"/users/login\" class=\"btn btn-outline-success my-2 my-sm-0\">Login</a>";
+        }
+    ?>
   </div>
 </nav>
 <div class="container" style="margin-top: 60px;">

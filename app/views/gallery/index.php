@@ -17,6 +17,3 @@
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
   <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
 </div>
-<?php 
-    print_r($params);
-?>
